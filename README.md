@@ -10,4 +10,6 @@ yarn add --dev extract-text-webpack-plugin
 yarn add --dev style-loader
 yarn add --dev css-loader
 yarn add --dev extract-text-webpack-plugin
+yarn add --dev html-webpack-plugin
+yarn add --dev html-webpack-inline-source-plugin
 ```

@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackInlineSourcePlugin from 'html-webpack-inline-source-plugin';
 import path from 'path';
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -51,6 +52,7 @@ module.exports = {
 			minify: { collapseWhitespace: true },
       inlineSource: '(.js|.css)$'
 		}),
+    new HtmlWebpackInlineSourcePlugin()
   ]),
 
 	stats: { colors: true },
