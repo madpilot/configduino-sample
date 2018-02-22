@@ -4,6 +4,8 @@ import Tab from 'configduino/components/tab';
 import Firmware from 'configduino/components/firmware';
 import WifiPanel from 'configduino/components/wifi-panel';
 import NetworkPanel from 'configduino/components/network-panel';
+import MQTTPanel from 'configduino/components/mqtt-panel';
+import SyslogPanel from 'configduino/components/syslog-panel';
 import Button from 'configduino/components/button';
 
 import Form from 'configduino/validation/form';
@@ -67,6 +69,16 @@ export default class App extends Component {
               />
 
             <NetworkPanel
+              {...this.state}
+              onUpdate={this.update.bind(this)}
+              />
+
+            <MQTTPanel
+              {...this.state}
+              onUpdate={this.update.bind(this)}
+              />
+
+            <SyslogPanel
               {...this.state}
               onUpdate={this.update.bind(this)}
               />
