@@ -17,29 +17,26 @@ export default class App extends Component {
   constructor() {
     super();
 
-    this.state = Object.assign({}, CONFIG_DEFAULTS, {
+    this.state = Object.assign({}, {
+      encryption: '7',
+      dhcp: true,
+      
+      ssid: '',
+      passkey: '',
+      deviceName: '',
+      staticIP: '',
+      staticDNS: '',
+      staticGateway: '',
+      staticSubnet: '',
+    }, {
       scan: true,
       tab: TAB_SETTINGS,
       loaded: false
     });
-
-    this.fetchConfig();
   }
 
-  fetchConfig() {
-    window.fetch("/config.dat").then((response) => {
-      if(!response.ok) {
-        throw Error(response.statusText);
-      }
-      return response.text();
-    }).then((config) => {
-      let decoded = decode(config);
-      decoded.scan = false;
-      decoded.loaded = true;
-      this.setState(decoded);
-    }).catch((error) => {
-      // Treat an error as a missing config.
-    });
+  update(settings) {
+    this.setState(settings);
   }
 
   changeTab(tab) {
@@ -52,8 +49,9 @@ export default class App extends Component {
   render() {
     return (
       <div id="app" className={styles.container}>
-        <Header />
-
+        <header className={styles.header}>
+          <h1>Sample Configduino</h1>
+        </header>
         <nav>
           <ul className={styles.tabs}>
             <li><a href="#" className={this.state.tab == TAB_SETTINGS ? styles['current-tab'] : styles.tab} onClick={this.changeTab(TAB_SETTINGS).bind(this)}>Settings</a></li>
@@ -62,7 +60,7 @@ export default class App extends Component {
         </nav>
 
         <Tab name={TAB_SETTINGS} current={this.state.tab}>
-          <Form class={styles.form} onSubmit={(e) => window.alert("Normally, you would save your configuration")}>
+          <Form class={styles.form} onSubmit={(e) => { e.preventDefault(); window.alert("Normally, you would save your configuration") }}>
             <WifiPanel
               {...this.state}
               onUpdate={this.update.bind(this)}
@@ -78,7 +76,7 @@ export default class App extends Component {
         </Tab>
 
         <Tab name={TAB_FIRMWARE} current={this.state.tab}>
-          <Form class={styles.form} onSubmit={this.uploadFirmware.bind(this)}>
+          <Form class={styles.form} onSubmit={(e) => { e.preventDefault(); alert("Normally this would upload your firmware"); } }>
             <Firmware />
             <Button>Upload</Button>
           </Form>

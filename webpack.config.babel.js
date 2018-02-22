@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -45,6 +46,11 @@ module.exports = {
 			'process.env.NODE_ENV': JSON.stringify(ENV)
 		}),
     new ExtractTextPlugin({ filename: 'style.css', allChunks: true, disable: ENV !== 'production' }),
+    new HtmlWebpackPlugin({
+			template: './index.ejs',
+			minify: { collapseWhitespace: true },
+      inlineSource: '(.js|.css)$'
+		}),
   ]),
 
 	stats: { colors: true },

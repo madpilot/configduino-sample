@@ -86,3 +86,15 @@ body {
   background-color: lightest;
   border-bottom: 1px solid lightest;
 }
+
+.header {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 auto 1rem;
+  width: 100%;
+  max-width: 20rem;
+}
