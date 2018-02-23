@@ -158,6 +158,7 @@ Finally, inline the CSS and JS into the HTML file.
 		setImmediate: false
 	}
 };
+```
 
 ## index.ejs
 
@@ -187,7 +188,7 @@ This is the entry point for preact. It simply attaches to the comopnent generate
 
 Attaching to document.body is not usually a good idea, but in this case there is no chance of external third party scripts messing with the DOM.
 
-```html
+```javascript
 import { h, render } from 'preact';
 
 let root;
