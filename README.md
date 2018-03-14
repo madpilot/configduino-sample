@@ -24,7 +24,7 @@ yarn add --dev configduino
 For this sample project, I'll use webpack as a packager.
 
 ```
-yarn add --dev webpack
+yarn add --dev webpack@3
 ```
 
 We'll need babel to deal with ES6 and the transformation of the preact JSX
